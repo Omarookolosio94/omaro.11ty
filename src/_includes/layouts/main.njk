@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{{ description | safe }}" />
+    <meta
+      name="keywords"
+      content="software engineer, fullstack developer, web developer, dotnet developer, c#, javascript, .NET Developer, dotnet, react, typescript, nextjs, node, express, sql, portfolio, oghenemaro, okolosio, prosper, tailwind, nigeria, lagos"
+    />
+    <meta name="author" content="Oghenemaro Okolosio" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:description" content="{{ description | safe }}" />
+    <meta property="og:url" content="{{ url }}" />
+    <meta property="og:image" content="{{ image }}" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ title }}" />
+    <meta name="twitter:description" content="{{ description | safe }}" />
+    <meta name="twitter:image" content="{{ image }}" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/favicon.ico" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+
+  <body class="bg-gradient-to-b from-gray-900 to-black text-white">
+    <header
+      class="fixed left-0 top-0 w-full bg-black bg-opacity-10 py-6 backdrop-blur-sm backdrop-filter"
+    >
+      <div class="container mx-auto flex items-center justify-center">
+        <nav class="flex space-x-8">
+          <a
+            href="/"
+            class="{% if page.url == '/' %}text-white{% else %}text-gray-400{% endif %} text-[12px] font-bold hover:text-white"
+          >
+            HOME
+          </a>
+          <a
+            href="/about"
+            class="{% if page.url == '/about/' %}text-white{% else %}text-gray-400{% endif %} text-[12px] font-bold hover:text-white"
+          >
+            ABOUT
+          </a>
+          <a
+            href="/articles"
+            class="{% if page.url == '/articles/' %}text-white{% else %}text-gray-400{% endif %} text-[12px] font-bold hover:text-white"
+          >
+            ARTICLES
+          </a>
+          <a
+            href="/contact"
+            class="{% if page.url == '/contact/' %}text-white{% else %}text-gray-400{% endif %} text-[12px] font-bold hover:text-white"
+          >
+            CONTACT
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="pt-6">
+      {{ content | safe }}
+    </main>
+
+    <footer class="mt-12 py-8">
+      <div class="container mx-auto text-center">
+        <nav class="mb-4 flex justify-center space-x-8">
+          <a
+            href="/"
+            class="{% if page.url == '/' %}text-white{% else %}text-gray-400{% endif %} text-[12px] font-bold hover:text-white"
+          >
+            HOME
+          </a>
+          <a
+            href="/about"
+            class="{% if page.url == '/about/' %}text-white{% else %}text-gray-400{% endif %} text-[12px] font-bold hover:text-white"
+          >
+            ABOUT
+          </a>
+          <a
+            href="/articles"
+            class="{% if page.url == '/articles/' %}text-white{% else %}text-gray-400{% endif %} text-[12px] font-bold hover:text-white"
+          >
+            ARTICLES
+          </a>
+          <a
+            href="/contact"
+            class="{% if page.url == '/contact/' %}text-white{% else %}text-gray-400{% endif %} text-[12px] font-bold hover:text-white"
+          >
+            CONTACT
+          </a>
+        </nav>
+        <img
+          src="/assets/maro_sm.png"
+          alt="Profile"
+          class="mx-auto border-2 border-white my-10 h-12 w-12 rounded-full bg-white"
+        />
+        <p class="text-[12px] text-gray-500">
+          Copyright © Oghenemaro Okolosio <span id="copyright-year"></span>
+        </p>
+
+        <p class="text-[12px] text-gray-500">UI Design by Leandro Rieger</p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const yearSpan = document.getElementById("copyright-year");
+        const currentYear = new Date().getFullYear();
+        yearSpan.textContent = currentYear;
+      });
+    </script>
+  </body>
+</html>

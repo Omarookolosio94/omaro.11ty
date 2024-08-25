@@ -1,0 +1,77 @@
+---
+layout: layouts/main.njk
+title: Oghenemaro | Software engineer
+description: "Hi, I am Oghenemaro Okolosio, a Software engineer with over four years' experience, highly proficient in C# and Javascript. I build REST APIs and web
+applications with focus on delivering an optimal experience to
+users."
+url: "https://oghenemaro.netlify.app"
+image: "/assets/"
+---
+
+<!-- Hero Section -->
+<section class="mb-[200px] flex flex-col items-center pt-[160px] text-center">
+  <img
+    src="/assets/maro_sm.png"
+    alt="Profile"
+    class="mb-10 h-24 w-24 rounded-full bg-white"
+  />
+  <h1 class="captitalize mb-4 text-[18px]">I'm Oghenemaro Okolosio.</h1>
+  <p class="mb-20 text-[36px]">Welcome To My Portfolio.</p>
+  <div class="flex space-x-4">
+    <a href="/contact" class="rounded bg-white px-8 py-5 font-bold text-black">
+      &rarr; Get In Touch
+    </a>
+    <a target="_blank" rel="noopener noreferrer"  href="https://docs.google.com/document/d/1Ym8Yju7XsK1uO9oL3P6YlO0rQCv3v0Ua27kDCi7PKpQ/edit?usp=sharing" class="rounded border border-white bg-gray-800 px-8 py-5 font-bold">
+      &darr; My Resume
+    </a>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="container mx-auto grid grid-cols-4 gap-5 px-4 py-12">
+  <h2 class="col-span-1 font-bold">About</h2>
+  <p class="md:col-span-2 col-span-3 text-gray-400">
+    Software Engineer highly proficient in C# and JavaScript. I build REST APIs
+    and web applications focusing on delivering an optimal experience to users.
+  </p>
+</section>
+
+<!-- Articles Section -->
+<section class="container mx-auto px-4 py-12">
+    <div class="flex justify-between flex-col md:flex-row gap-5">
+        <h2 class="mb-4 w-full md:w-1/4 font-bold">Articles</h2>
+
+        <div class="w-full md:w-3/4">
+          {% for article in collections.articles.slice(0, 3) %}
+            <div class="mb-10 rounded p-2 flex justify-between gap-5 group hover:cursor-pointer transition duration-300 ease-in-out">
+              <a href="{{ article.url }}" class="flex w-full gap-5">
+                <div class="w-2/3">
+                  <h3 class="text-[18px] mb-5 font-bold">
+                    {{ article.data.title }}
+                  </h3>
+                  <p class="mb-5 text-gray-400">
+                    {{ article.data.description }}
+                  </p>
+                  <p class="text-[12px] font-bold text-white ">
+                    {{ article.date | date('MMMM d, yyyy') }} · {{ article.content | length | divide(200) | round }} min read
+                  </p>
+                </div>
+                <div class="w-1/3">
+                  <img
+                    src="{{ article.data.image }}"
+                    alt="Article Image"
+                    class="rounded w-auto h-auto md:w-[200px] md:h-[160px] transition duration-300 ease-in-out group-hover:scale-105"
+                  />
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+    </div>
+
+    <div class="mt-8 text-center">
+      <a href="/articles" class="rounded border border-white bg-gray-800 px-8 py-5 font-bold">
+        &rarr; Read more
+      </a>
+    </div>
+</section>
