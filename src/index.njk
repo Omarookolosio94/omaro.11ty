@@ -11,41 +11,58 @@ image: "/assets/"
 <!-- Hero Section -->
 <section class="mb-[200px] flex flex-col items-center pt-[160px] text-center">
   <img
-    src="/assets/maro_sm.png"
+    src="/assets/images/maro.jpeg"
     alt="Profile"
     class="mb-10 h-24 w-24 rounded-full bg-white"
   />
-  <h1 class="captitalize mb-4 text-[18px]">I'm Oghenemaro Okolosio.</h1>
+  <h1 class="mb-4 text-[18px] capitalize">
+    I'M OGHENEMARO OKOLOSIO <br />
+    A Full Stack Web Developer
+  </h1>
   <p class="mb-20 text-[36px]">Welcome To My Portfolio.</p>
   <div class="flex space-x-4">
     <a href="/contact" class="rounded bg-white px-8 py-5 font-bold text-black">
       &rarr; Get In Touch
     </a>
-    <a target="_blank" rel="noopener noreferrer"  href="https://docs.google.com/document/d/1Ym8Yju7XsK1uO9oL3P6YlO0rQCv3v0Ua27kDCi7PKpQ/edit?usp=sharing" class="rounded border border-white bg-gray-800 px-8 py-5 font-bold">
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://docs.google.com/document/d/1Ym8Yju7XsK1uO9oL3P6YlO0rQCv3v0Ua27kDCi7PKpQ/edit?usp=sharing"
+      class="rounded border border-white bg-gray-800 px-8 py-5 font-bold"
+    >
       &darr; My Resume
     </a>
   </div>
 </section>
 
 <!-- About Section -->
-<section class="container mx-auto grid grid-cols-4 gap-5 px-4 py-12">
-  <h2 class="col-span-1 font-bold">About</h2>
-  <p class="md:col-span-2 col-span-3 text-gray-400">
-    Software Engineer highly proficient in C# and JavaScript. I build REST APIs
-    and web applications focusing on delivering an optimal experience to users.
-  </p>
+<section class="container mx-auto px-4 py-12">
+  <div class="flex flex-col justify-start gap-5 md:flex-row">
+    <h2 class="w-full font-normal md:w-1/4">ABOUT</h2>
+    <p class="w-full text-gray-400 md:w-2/4">
+      A seasoned Software Engineer with extensive experience in building robust,
+      scalable, and innovative solutions across multiple domains. With expertise
+      in JavaScript, TypeScript, React, Angular, Node.js, and .NET Core, I have
+      consistently delivered high-quality software for top-tier legacy
+      organisations and startups, including Stanbic IBTC Bank, ITab Solutions,
+      and Campusrunz. My strong background in both frontend and backend
+      technologies enables me to take projects from concept to completion
+      efficiently.
+    </p>
+  </div>
 </section>
 
 <!-- Articles Section -->
+<!--
 <section class="container mx-auto px-4 py-12">
     <div class="flex justify-between flex-col md:flex-row gap-5">
-        <h2 class="mb-4 w-full md:w-1/4 font-bold">Articles</h2>
+        <h2 class="mb-4 w-full md:w-1/4 font-normal">ARTICLES</h2>
 
         <div class="w-full md:w-3/4">
           {% for article in collections.articles.slice(0, 3) %}
             <div class="mb-10 rounded p-2 flex justify-between gap-5 group hover:cursor-pointer transition duration-300 ease-in-out">
-              <a href="{{ article.url }}" class="flex w-full gap-5">
-                <div class="w-2/3">
+              <a href="{{ article.url }}" class="flex flex-col-reverse md:flex-row w-full gap-5">
+                <div class="w-full md:w-2/3">
                   <h3 class="text-[18px] mb-5 font-bold">
                     {{ article.data.title }}
                   </h3>
@@ -56,11 +73,11 @@ image: "/assets/"
                     {{ article.date | date('MMMM d, yyyy') }} · {{ article.content | length | divide(200) | round }} min read
                   </p>
                 </div>
-                <div class="w-1/3">
+                <div class="w-full overflow-hidden md:w-1/3">
                   <img
                     src="{{ article.data.image }}"
                     alt="Article Image"
-                    class="rounded w-auto h-auto md:w-[200px] md:h-[160px] transition duration-300 ease-in-out group-hover:scale-105"
+                    class="rounded w-full h-[260px] md:w-[200px] md:h-[160px] transition duration-300 ease-in-out group-hover:scale-105"
                   />
                 </div>
               </a>
@@ -68,10 +85,10 @@ image: "/assets/"
           {% endfor %}
         </div>
     </div>
-
-    <div class="mt-8 text-center">
-      <a href="/articles" class="rounded border border-white bg-gray-800 px-8 py-5 font-bold">
-        &rarr; Read more
-      </a>
-    </div>
+  <div class="mt-8 text-center">
+    <a href="/articles" class="rounded border border-white bg-gray-800 px-8 py-5 font-bold">
+      &rarr; Read more
+    </a>
+  </div>
 </section>
+-->
