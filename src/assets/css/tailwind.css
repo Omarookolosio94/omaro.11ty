@@ -30,6 +30,10 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: #dedede;
   font-weight: 400;
