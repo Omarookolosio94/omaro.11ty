@@ -3,28 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ title }}</title>
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="{{ description | safe }}" />
+    <title>{{ title or site.title }}</title>
+    <meta name="description" content="{{ description or site.description }}" />
+    <meta name="keywords" content="{{ keywords or site.keywords }}" />
+    <meta name="author" content="{{ author or site.author }}" />
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="{{ title or site.title }}" />
     <meta
-      name="keywords"
-      content="software engineer, fullstack developer, web developer, dotnet developer, c#, javascript, .NET Developer, dotnet, react, typescript, nextjs, node, express, sql, portfolio, oghenemaro, okolosio, prosper, tailwind, nigeria, lagos"
+      property="og:description"
+      content="{{ description or site.description }}"
     />
-    <meta name="author" content="Oghenemaro Okolosio" />
-
-    <!-- Open Graph / Facebook -->
+    <meta property="og:url" content="{{ url or site.url }}" />
+    <meta property="og:image" content="{{ image or site.image }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="{{ title }}" />
-    <meta property="og:description" content="{{ description | safe }}" />
-    <meta property="og:url" content="{{ url }}" />
-    <meta property="og:image" content="{{ image }}" />
 
-    <!-- Twitter -->
+    <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="{{ title }}" />
-    <meta name="twitter:description" content="{{ description | safe }}" />
-    <meta name="twitter:image" content="{{ image }}" />
+    <meta name="twitter:title" content="{{ title or site.title }}" />
+    <meta
+      name="twitter:description"
+      content="{{ description or site.description }}"
+    />
+    <meta name="twitter:image" content="{{ image or site.image }}" />
+
+    <link rel="canonical" href="{{ url or site.url }}" />
 
     <!-- Favicon -->
     <link rel="icon" href="/assets/favicon.ico" />
@@ -67,7 +72,7 @@
       </div>
     </header>
 
-    <main class="pt-6 min-h-[80vh]">{{ content | safe }}</main>
+    <main class="min-h-[80vh] pt-6">{{ content | safe }}</main>
 
     <footer class="mt-12 py-8">
       <div class="container mx-auto text-center">
@@ -99,7 +104,8 @@
         </nav>
         <img
           src="/assets/images/maro.jpeg"
-          alt="Profile"
+          alt="Oghenemaro Okolosio"
+          loading="lazy"
           class="mx-auto my-10 h-12 w-12 rounded-full border-2 border-white bg-white"
         />
         <p class="text-[12px] text-gray-500">
@@ -116,6 +122,22 @@
         const currentYear = new Date().getFullYear();
         yearSpan.textContent = currentYear;
       });
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Oghenemaro Okolosio",
+        "url": "https://omaro.netlify.app",
+        "image": "https://omaro.netlify.app/images/profile.jpg",
+        "sameAs": ["https://www.linkedin.com/in/oghenemaro-okolosio/"],
+        "jobTitle": "Software Engineer",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Stanbic IBTC Bank"
+        }
+      }
     </script>
   </body>
 </html>
