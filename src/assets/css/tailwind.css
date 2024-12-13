@@ -7,26 +7,31 @@
 @layer components {
 }
 
-::-webkit-scrollbar {
+::-webkit-scrollbar,
+iframe::-webkit-scrollbar {
   height: 100%;
   width: 8px;
   background-color: initial;
 }
-body::-webkit-scrollbar {
+body::-webkit-scrollbar,
+iframe::-webkit-scrollbar {
   --tw-bg-opacity: 1;
   background-color: black;
 }
-::-webkit-scrollbar-track {
+::-webkit-scrollbar-track,
+iframe::-webkit-scrollbar-track {
   background-color: initial;
 }
-::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb,
+iframe::-webkit-scrollbar-thumb {
   border-radius: 9999px;
   border: 0.125rem solid #dedede;
   background-clip: content-box;
   background-color: #dedede;
 }
 
-::-webkit-scrollbar-button {
+::-webkit-scrollbar-button,
+iframe::-webkit-scrollbar-button {
   display: none;
 }
 
