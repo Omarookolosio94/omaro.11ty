@@ -33,8 +33,12 @@
 
     <!-- Favicon -->
     <link rel="icon" href="/assets/favicon.ico" />
+    <!-- TODO: add manifest link -->
+
+    <!-- TODO: update favicons -->
 
     <!-- Stylesheet -->
+    <link rel="stylesheet" href="/assets/css/tailwind.css" />
     <link rel="stylesheet" href="/assets/css/styles.css" />
   </head>
 
@@ -45,31 +49,94 @@
     ></div>
 
     <header
-      class="fixed left-0 top-0 w-full bg-black bg-opacity-10 py-6 backdrop-blur-sm backdrop-filter"
+      class="fixed left-0 top-0 w-full bg-black bg-opacity-10 py-4 backdrop-blur-sm backdrop-filter"
     >
-      <div class="container mx-auto flex items-center justify-center">
-        <nav class="flex space-x-8">
+      <div class="mx-auto flex w-[95%] items-center justify-between">
+        <a href="/" class="flex items-center gap-2">
+          <img
+            src="/assets/images/maro.jpeg"
+            alt="Maro"
+            loading="lazy"
+            class="h-6 w-6 rounded-full bg-white"
+          />
+          <p
+            class="inline-flex bg-gradient-to-r from-blue-500 to-blue-200 bg-clip-text text-xs font-semibold text-transparent"
+          >
+            MARO
+          </p>
+        </a>
+
+        <nav class="flex items-center space-x-5 md:space-x-8">
           <a
             href="/"
-            class="{% if page.url == '/' %}text-white{% else %}text-gray-400{% endif %} text-[12px] font-semibold hover:text-white"
+            class="{% if page.url == '/' %}text-white{% else %}text-gray-400{% endif %} hidden text-xs font-semibold hover:text-white md:block"
           >
             HOME
           </a>
           <a
             href="/about"
-            class="{% if page.url == '/about/' %}text-white{% else %}text-gray-400{% endif %} text-[12px] font-semibold hover:text-white"
+            class="{% if page.url == '/about/' %}text-white{% else %}text-gray-400{% endif %} hidden text-xs font-semibold hover:text-white md:block"
           >
             ABOUT
           </a>
           <a
             href="/articles"
-            class="{% if page.url == '/articles/' %}text-white{% else %}text-gray-400{% endif %} text-[12px] font-semibold hover:text-white"
+            class="{% if page.url == '/articles/' %}text-white{% else %}text-gray-400{% endif %} hidden text-xs font-semibold hover:text-white md:block"
           >
             ARTICLES
           </a>
           <a
             href="/contact"
-            class="{% if page.url == '/contact/' %}text-white{% else %}text-gray-400{% endif %} text-[12px] font-semibold hover:text-white"
+            class="{% if page.url == '/contact/' %}text-white{% else %}text-gray-400{% endif %} hidden text-xs font-semibold hover:text-white md:block"
+          >
+            CONTACT
+          </a>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://docs.google.com/document/d/1gq_vYZ3CEDzVkLXDMGbFHmYVXHPRBH0y2awXbaBVxec/edit?usp=sharing"
+            class="inline-flex items-center gap-2 rounded bg-gradient-to-r from-blue-500 to-blue-200 px-2 py-1 text-xs font-medium text-black hover:to-blue-300"
+          >
+            <span>RESUME</span>
+          </a>
+
+          <button
+            id="togglenav"
+            class="inline-flex h-[28px] w-[28px] items-center rounded text-xs font-medium md:hidden"
+          >
+            <span
+              class="iconify solar--hamburger-menu-broken h-[24px] w-[24px]"
+            ></span>
+          </button>
+        </nav>
+      </div>
+
+      <div
+        id="sidenav"
+        class="transition-height h-0 overflow-hidden duration-500 ease-in-out md:hidden"
+      >
+        <nav class="mx-auto flex w-[95%] flex-col gap-5 py-5">
+          <a
+            href="/"
+            class="{% if page.url == '/' %}text-white{% else %}text-gray-400{% endif %} font-semibold hover:text-white"
+          >
+            HOME
+          </a>
+          <a
+            href="/about"
+            class="{% if page.url == '/about/' %}text-white{% else %}text-gray-400{% endif %} font-semibold hover:text-white"
+          >
+            ABOUT
+          </a>
+          <a
+            href="/articles"
+            class="{% if page.url == '/articles/' %}text-white{% else %}text-gray-400{% endif %} font-semibold hover:text-white"
+          >
+            ARTICLES
+          </a>
+          <a
+            href="/contact"
+            class="{% if page.url == '/contact/' %}text-white{% else %}text-gray-400{% endif %} font-semibold hover:text-white md:block"
           >
             CONTACT
           </a>
@@ -80,39 +147,80 @@
     <main class="min-h-[80vh] pt-6">{{ content | safe }}</main>
 
     <footer class="mt-12 py-8">
-      <div class="container mx-auto text-center">
+      <div class="mx-auto w-[95%] text-center">
+        <!--TODO: Update footer design -->
         <nav class="mb-4 flex justify-center space-x-8">
           <a
             href="/"
-            class="{% if page.url == '/' %}text-white{% else %}text-gray-400{% endif %} text-[12px] font-semibold hover:text-white"
+            class="{% if page.url == '/' %}text-white{% else %}text-gray-400{% endif %} text-xs font-semibold hover:text-white"
           >
-            HOME
+            Home
           </a>
           <a
             href="/about"
-            class="{% if page.url == '/about/' %}text-white{% else %}text-gray-400{% endif %} text-[12px] font-semibold hover:text-white"
+            class="{% if page.url == '/about/' %}text-white{% else %}text-gray-400{% endif %} text-xs font-semibold hover:text-white"
           >
-            ABOUT
+            About
           </a>
           <a
             href="/articles"
-            class="{% if page.url == '/articles/' %}text-white{% else %}text-gray-400{% endif %} text-[12px] font-semibold hover:text-white"
+            class="{% if page.url == '/articles/' %}text-white{% else %}text-gray-400{% endif %} text-xs font-semibold hover:text-white"
           >
-            ARTICLES
+            Articles
           </a>
           <a
             href="/contact"
-            class="{% if page.url == '/contact/' %}text-white{% else %}text-gray-400{% endif %} text-[12px] font-semibold hover:text-white"
+            class="{% if page.url == '/contact/' %}text-white{% else %}text-gray-400{% endif %} text-xs font-semibold hover:text-white"
           >
-            CONTACT
+            Contact
           </a>
         </nav>
-        <img
-          src="/assets/images/maro.jpeg"
-          alt="Oghenemaro Okolosio"
-          loading="lazy"
-          class="mx-auto my-10 h-12 w-12 rounded-full border-2 border-white bg-white"
-        />
+
+        <div class="my-10">
+          <img
+            src="/assets/images/maro.jpeg"
+            alt="Oghenemaro Okolosio"
+            loading="lazy"
+            class="mx-auto mb-5 h-12 w-12 rounded-full border-2 border-white bg-white"
+          />
+
+          <div
+            class="flex w-full items-center justify-center gap-5 text-gray-500"
+          >
+            <a
+              href="mailto:omarookolosio94@gmail.com"
+              class="font-semibold hover:text-white"
+            >
+              <span class="iconify mdi--email text-xl"></span
+            ></a>
+
+            <a
+              href="https://www.linkedin.com/in/oghenemaro-okolosio/"
+              target="_blank"
+              class="font-semibold hover:text-white"
+              rel="noopener noreferrer"
+            >
+              <span class="iconify logos--linkedin-icon text-lg"></span>
+            </a>
+
+            <a
+              href="https://github.com/Omarookolosio94"
+              target="_blank"
+              class="font-semibold hover:text-white"
+              rel="noopener noreferrer"
+            >
+              <span class="iconify logos--github-icon text-lg"></span>
+            </a>
+
+            <a
+              href="https://wa.me/2347019069486"
+              class="font-semibold hover:text-white"
+            >
+              <span class="iconify logos--whatsapp-icon text-lg"></span>
+            </a>
+          </div>
+        </div>
+
         <p class="text-xs text-gray-500">
           Copyright © Oghenemaro Okolosio <span id="copyright-year"></span>
         </p>
@@ -226,6 +334,48 @@
           },
         },
         retina_detect: true,
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const toggleButton = document.getElementById("togglenav");
+        const sideNav = document.getElementById("sidenav");
+
+        // Function to close the sidenav
+        function closeSideNav() {
+          sideNav.classList.remove("h-[180px]");
+          sideNav.classList.add("h-0");
+          toggleButton.innerHTML =
+            '<span class="iconify solar--hamburger-menu-broken text-lg"></span>';
+        }
+
+        // Add an event listener to the toggle button
+        toggleButton.addEventListener("click", function (event) {
+          // Prevent outside click listener from triggering
+          event.stopPropagation();
+
+          // Toggle the classes for sideNav
+          if (sideNav.classList.contains("h-0")) {
+            sideNav.classList.remove("h-0");
+            sideNav.classList.add("h-[180px]");
+            toggleButton.innerHTML =
+              '<span class="iconify solar--close-square-broken h-[24px] w-[24px]"></span>';
+          } else {
+            closeSideNav();
+          }
+        });
+
+        // Add an event listener for clicks outside the sidenav
+        document.addEventListener("click", function (event) {
+          const isClickInside =
+            sideNav.contains(event.target) ||
+            toggleButton.contains(event.target);
+
+          if (!isClickInside && sideNav.classList.contains("h-[180px]")) {
+            closeSideNav();
+          }
+        });
       });
     </script>
   </body>
