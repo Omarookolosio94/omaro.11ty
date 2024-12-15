@@ -17,6 +17,13 @@ module.exports = function (eleventyConfig) {
     return format(new Date(date), formatStr);
   });
 
+  eleventyConfig.addFilter("wordCount", (content) => {
+    if (content && typeof content === "string") {
+      return content.split(/\s+/).length;
+    }
+    return 0;
+  });
+
   eleventyConfig.addPlugin(pluginSitemap, {
     sitemap: {
       hostname: "https://omaro.netlify.app",
