@@ -6,5 +6,14 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [addIconSelectors(["mdi", "logos", "solar"])],
+  plugins: [
+    addIconSelectors([
+      "mdi",
+      "logos",
+      "solar",
+      "ic",
+      "material-symbols",
+      "ion",
+    ]),
+  ],
 };

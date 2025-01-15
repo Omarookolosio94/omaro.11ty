@@ -1,0 +1,92 @@
+---
+layout: layouts/altLayout.njk
+---
+
+<article
+  class="mx-auto mb-[160px] w-[95%] pt-[60px] text-gray-400 md:w-2/3 lg:w-1/2"
+>
+  <header class="mb-4">
+    <div class="flex items-center justify-center">
+      <h5
+        class="mb-5 mt-4 inline-flex bg-gradient-to-r from-blue-500 to-blue-200 bg-clip-text text-center text-xl font-normal text-transparent"
+      >
+        {{ title }}
+      </h5>
+    </div>
+
+    {% if image %}
+      <div class="relative">
+        <img
+          src="{{ image }}"
+          alt="{{ title }}"
+          class="mb-2 h-[42vh] w-full rounded-md object-cover"
+        />
+        <p
+          class="absolute bottom-5 left-0 bg-gray-400 px-2 py-1 text-xs font-medium text-black"
+        >
+          {{ category }}
+        </p>
+      </div>
+    {% endif %}
+
+    <div class="mb-3 flex justify-between">
+      <button
+        onclick="shareContent({
+        title: '{{ title }}',
+        text: '{{ description }}',
+        url: window.location.href
+      })"
+        class="flex items-center gap-1"
+      >
+        <span class="ic--outline-share iconify"></span>
+        <span class="text-xs font-medium">Share</span>
+      </button>
+
+      <p class="text-xs font-light">{{ date | date('MMMM d, yyyy') }}</p>
+
+      <!-- 
+          {% if lastModified %}
+        <p class="text-center text-sm">
+          Last Updated: {{ lastModified | date('MMMM d, yyyy') }}
+        </p>
+      {% endif %}
+        -->
+    </div>
+  </header>
+
+  <main class="min-h-[80vh] pt-6">{{ content | safe }}</main>
+
+  <footer class="mt-16">
+    {% set index = collections.articles | indexOf(page) %}
+    {% set prevArticle = collections.articles[index - 1] %}
+    {% set nextArticle = collections.articles[index + 1] %}
+
+    <div class="flex flex-col justify-between gap-3 lg:flex-row">
+      {% if prevArticle %}
+        <a href="{{ prevArticle.url }}" class="font-medium italic underline">
+          <span class="material-symbols--navigate-before iconify"></span>
+          {{ prevArticle.data.title }}</a
+        >
+      {% endif %}
+
+      {% if nextArticle %}
+        <a href="{{ nextArticle.url }}" class="font-medium italic underline">
+          {{ nextArticle.data.title }}
+          <span class="material-symbols--navigate-next iconify"></span>
+        </a>
+      {% endif %}
+    </div>
+  </footer>
+</article>
+
+<script>
+  function shareContent(data) {
+    if (navigator.share) {
+      navigator
+        .share(data)
+        .then(() => {})
+        .catch((error) => {});
+    } else {
+    }
+  }
+</script>

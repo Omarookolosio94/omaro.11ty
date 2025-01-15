@@ -1,9 +1,14 @@
 ---
 layout: layouts/altLayout.njk
+eleventyNavigation:
+  key: articles
+  order: 3
 pagination:
   data: collections.articles
   size: 5
   alias: articles
+  # Define how the pagination should behave
+  reverse: true # Optional, depending on if you want the articles in reverse order
 title: "Articles by Oghenemaro Okolosio"
 description: "Explore the latest articles and insights from Oghenemaro Okolosio, covering topics like software engineering, web development, and technology trends."
 keywords: "Articles, Oghenemaro Okolosio, Software Engineering, Web Development, Technology Insights"
@@ -12,7 +17,7 @@ url: "https://omaro.netlify.app/articles"
 image: "https://omaro.netlify.app/assets/images/maro.jpeg"
 ---
 
-<section class="mx-auto mb-[200px] w-[95%] pt-[160px]">
+<section class="mx-auto w-[95%] py-12">
   <div class="flex flex-col justify-start gap-5 md:flex-row">
     <div class="w-full md:w-1/4">
       <p
@@ -22,11 +27,128 @@ image: "https://omaro.netlify.app/assets/images/maro.jpeg"
       </p>
     </div>
 
-    <div class="w-full text-gray-400 md:w-2/4">
-      <!-- TODO: Work on articles page -->
-
-      <!-- TODO: Work on single article page -->
-      <p class="">Page is under construction</p>
+    <div class="w-full md:w-3/4 lg:w-2/4">
+      {% for article in articles %}
+        <div
+          class="group mb-16 flex justify-between gap-5 border-b-0 border-b-gray-500 transition duration-300 ease-in-out hover:cursor-pointer"
+        >
+          <a
+            href="{{ article.url }}"
+            class="flex w-full flex-col justify-start gap-5 text-gray-400 sm:flex-row"
+          >
+            <div class="w-full overflow-hidden md:w-[200px] md:max-w-[200px]">
+              <img
+                src="{{ article.data.image }}"
+                loading="lazy"
+                alt="Article Image"
+                class="h-[160px] w-full rounded object-cover transition duration-300 ease-in-out group-hover:scale-105 md:h-[100px]"
+              />
+            </div>
+            <div class="w-full md:w-2/3">
+              <p class="font-light">{{ article.data.category }}</p>
+              <h3 class="mb-2 font-semibold group-hover:underline">
+                {{ article.data.title }}
+              </h3>
+              <p class="text-xs font-semibold italic">
+                {{ article.date | date('MMMM d, yyyy') }} ·
+                {% set wordCount = article.content | wordCount %}
+                {{ (wordCount / 250) | round }}
+                min read
+              </p>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
     </div>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="mt-8 flex flex-col items-center justify-start gap-5 md:flex-row">
+    <div class="w-full md:w-1/4"></div>
+    {% if pagination.pages.length > 1 %}
+      <nav aria-label="Post pages" class="flex items-center gap-2">
+        <div>
+          {% if page.url != pagination.href.first %}
+            <a
+              href="{{ pagination.href.first }}"
+              class="font-medium italic underline"
+            >
+              <span class="ion--play-back-sharp iconify text-2xl"></span>
+            </a>
+          {% else %}
+            <div
+              class="cursor-not-allowed font-medium italic underline"
+              aria-disabled="true"
+            >
+              <span class="ion--play-back-sharp iconify text-lg"></span>
+            </div>
+          {% endif %}
+        </div>
+        <div>
+          {% if pagination.href.previous %}
+            <a
+              href="{{ pagination.href.previous }}"
+              class="font-medium italic underline"
+            >
+              <span class="ion--caret-back-sharp iconify text-lg"></span>
+            </a>
+          {% else %}
+            <div
+              class="font-medium italic underline hover:cursor-not-allowed"
+              aria-disabled="true"
+            >
+              <span class="ion--caret-back-sharp iconify text-lg"></span>
+            </div>
+          {% endif %}
+        </div>
+        {%- for pageEntry in pagination.pages %}
+          <div>
+            <a
+              href="{{ pagination.hrefs[ loop.index0 ] }}"
+              {% if page.url == pagination.hrefs[ loop.index0 ] %}
+                aria-current="page"
+              {% endif %}
+              class="h-3 w-5 p-3 rounded border"
+            >
+              {{ loop.index }}
+            </a>
+          </div>
+        {%- endfor %}
+        <div>
+          {% if pagination.href.next %}
+            <a
+              href="{{ pagination.href.next }}"
+              class="font-medium italic underline"
+            >
+              <span class="ion--caret-forward-sharp iconify"></span>
+            </a>
+          {% else %}
+            <div
+              class="cursor-not-allowed font-medium italic underline"
+              aria-disabled="true"
+            >
+              <span class="ion--caret-forward-sharp iconify"></span>
+            </div>
+          {% endif %}
+        </div>
+        <div>
+          {% if page.url != pagination.href.last %}
+            <a
+              href="{{ pagination.href.last }}"
+              class="font-medium italic underline"
+            >
+              <span class="ion--play-forward-sharp iconify"></span>
+            </a>
+          {% else %}
+            <div
+              class="font-medium italic underline hover:cursor-not-allowed"
+              aria-disabled="true"
+            >
+              <span class="ion--play-forward-sharp iconify"></span>
+            </div>
+          {% endif %}
+        </div>
+      </nav>
+    {% endif %}
   </div>
 </section>

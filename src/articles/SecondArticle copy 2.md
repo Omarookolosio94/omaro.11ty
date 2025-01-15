@@ -4,7 +4,7 @@ description: "An exploration of the potential pitfalls of relying too heavily on
 category: "Software Development"
 date: "2024-12-15T16:00:00Z"
 image: "/assets/images/a2.jpg"
-layout: layouts/main.njk
+layout: layouts/articles.njk
 ---
 
 # Why You Should Think Twice Before Using External Libraries
