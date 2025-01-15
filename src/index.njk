@@ -9,7 +9,7 @@ layout: layouts/main.njk
 ---
 
 <!-- Hero Section -->
-<section class="mb-[200px] flex flex-col items-center pt-[160px] text-center">
+<section class="flex h-[75vh] flex-col items-center justify-center text-center">
   <img
     src="/assets/images/maro.jpeg"
     alt="Profile"
@@ -55,14 +55,13 @@ layout: layouts/main.njk
       </p>
     </div>
     <p class="w-full text-gray-400 md:w-3/4 lg:w-2/4">
-      A seasoned Software Engineer with extensive experience in building robust,
+      A seasoned Software Engineer with extensive experience building robust,
       scalable, and innovative solutions across multiple domains. With expertise
-      in JavaScript, TypeScript, React, Angular, Node.js, and .NET Core, I have
+      in JavaScript, TypeScript, React, Angular, Node.js, and .NET, I have
       consistently delivered high-quality software for top-tier legacy
       organisations and startups, including Stanbic IBTC Bank, ITab Solutions,
-      and Campusrunz. My strong background in both frontend and backend
-      technologies enables me to take projects from concept to completion
-      efficiently.
+      and Campusrunz. My strong background in front and backend technologies
+      enables me to take projects from concept to completion efficiently.
     </p>
   </div>
 </section>
@@ -262,36 +261,36 @@ layout: layouts/main.njk
 
     <div class="w-full md:w-3/4 lg:w-2/4">
       {% for article in collections.articles.slice(0, 3) %}
-        <div
-          class="group mb-16 flex justify-between gap-5 border-b-0 border-b-gray-500 transition duration-300 ease-in-out hover:cursor-pointer"
-        >
-          <a
-            href="{{ article.url }}"
-            class="flex w-full flex-col justify-start gap-5 text-gray-400 sm:flex-row"
-          >
-            <div class="w-full overflow-hidden md:w-[200px] md:max-w-[200px]">
-              <img
-                src="{{ article.data.image }}"
-                loading="lazy"
-                alt="Article Image"
-                class="h-[160px] w-full rounded object-cover transition duration-300 ease-in-out group-hover:scale-105 md:h-[100px]"
-              />
-            </div>
-            <div class="w-full md:w-2/3">
-              <p class="font-light">{{ article.data.category }}</p>
-              <h3 class="mb-2 font-semibold group-hover:underline">
-                {{ article.data.title }}
-              </h3>
-              <p class="text-xs font-semibold italic">
-                {{ article.date | date('MMMM d, yyyy') }} ·
-                {% set wordCount = article.content | wordCount %}
-                {{ (wordCount / 250) | round }}
-                min read
-              </p>
-            </div>
-          </a>
-        </div>
-      {% endfor %}
+  <div
+    class="group mb-16 flex justify-between gap-5 border-b-0 border-b-gray-500 transition duration-300 ease-in-out hover:cursor-pointer"
+  >
+    <a
+      href="{{ article.url }}"
+      class="flex w-full flex-col justify-start gap-5 text-gray-400 sm:flex-row"
+    >
+      <div class="w-full overflow-hidden md:w-[200px] md:max-w-[200px]">
+        <img
+          src="{{ article.data.image }}"
+          loading="lazy"
+          alt="Article Image"
+          class="h-[160px] w-full rounded object-cover transition duration-300 ease-in-out group-hover:scale-105 md:h-[100px]"
+        />
+      </div>
+      <div class="w-full md:w-2/3">
+        <p class="font-light">{{ article.data.category }}</p>
+        <h3 class="mb-2 font-semibold group-hover:underline">
+          {{ article.data.title }}
+        </h3>
+        <p class="text-xs font-semibold italic">
+          {{ article.date | date('MMMM d, yyyy') }} ·
+          {% set wordCount = article.content | wordCount %}
+          {{ (wordCount / 250) | round }}
+          min read
+        </p>
+      </div>
+    </a>
+  </div>
+{% endfor %}
     </div>
   </div>
   <div class="md:flex-row˝ mt-8 flex flex-col items-center justify-start gap-5">

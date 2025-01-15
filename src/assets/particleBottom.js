@@ -1,7 +1,4 @@
-// particles.js content
-
-// Initialize particlesJS
-particlesJS("particles-js", {
+particlesJS("particles-js-bottom", {
   particles: {
     number: {
       value: 50,
