@@ -14,7 +14,7 @@ layout: layouts/main.njk
     src="/assets/images/maro.jpeg"
     alt="Profile"
     loading="lazy"
-    class="mb-5 h-24 w-24 rounded-full bg-white"
+    class="mb-5 h-[200px] w-[200px] rounded-full bg-white"
   />
   <h1 class="mb-10 capitalize">
     <p
@@ -24,7 +24,7 @@ layout: layouts/main.njk
     </p>
     <p class="block text-sm text-gray-400">Software Engineer</p>
   </h1>
-  <div class="flex space-x-4">
+  <div class="flex flex-col gap-5 sm:flex-row justify-center">
     <a
       href="/contact"
       class="flex items-center gap-2 rounded bg-white px-8 py-2 text-xs font-medium text-black"
@@ -169,81 +169,83 @@ layout: layouts/main.njk
         </p>
       </div>
 
-      <div class="group mb-5">
-        <div>
-          <div
-            class="inline-block h-[8px] w-[8px] bg-gray-400 group-hover:bg-white"
-          ></div>
-          <a
-            href="https://usewebeffects-001-site1.atempurl.com/swagger/index.html"
-            class="font-medium italic underline"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Proquotes</a
-          >
+      <!-- 
+        <div class="group mb-5">
+          <div>
+            <div
+              class="inline-block h-[8px] w-[8px] bg-gray-400 group-hover:bg-white"
+            ></div>
+            <a
+              href="https://usewebeffects-001-site1.atempurl.com/swagger/index.html"
+              class="font-medium italic underline"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Proquotes</a
+            >
+          </div>
+          <p>
+            An API for managing customer quotation requests, enabling merchants to
+            streamline communication and send detailed quotes efficiently.
+          </p>
         </div>
-        <p>
-          An API for managing customer quotation requests, enabling merchants to
-          streamline communication and send detailed quotes efficiently.
-        </p>
-      </div>
-
-      <div class="group mb-5">
-        <div>
-          <div
-            class="inline-block h-[8px] w-[8px] bg-gray-400 group-hover:bg-white"
-          ></div>
-          <a
-            href="https://www.itapsolutions.com/"
-            class="font-medium italic underline"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Xfund</a
-          >
+  
+        <div class="group mb-5">
+          <div>
+            <div
+              class="inline-block h-[8px] w-[8px] bg-gray-400 group-hover:bg-white"
+            ></div>
+            <a
+              href="https://www.itapsolutions.com/"
+              class="font-medium italic underline"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Xfund</a
+            >
+          </div>
+          <p>
+            A portfolio and asset management system with features like automated
+            valuations, financial instrument tracking, and reporting tools.
+          </p>
         </div>
-        <p>
-          A portfolio and asset management system with features like automated
-          valuations, financial instrument tracking, and reporting tools.
-        </p>
-      </div>
-
-      <div class="group mb-5">
-        <div>
-          <div
-            class="inline-block h-[8px] w-[8px] bg-gray-400 group-hover:bg-white"
-          ></div>
-          <a
-            href="https://useprism.co/home"
-            class="font-medium italic underline"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Prism</a
-          >
+  
+        <div class="group mb-5">
+          <div>
+            <div
+              class="inline-block h-[8px] w-[8px] bg-gray-400 group-hover:bg-white"
+            ></div>
+            <a
+              href="https://useprism.co/home"
+              class="font-medium italic underline"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Prism</a
+            >
+          </div>
+          <p>
+            A fraud reporting platform enabling users to submit detailed reports,
+            access law enforcement contacts, and consumer protection resources.
+          </p>
         </div>
-        <p>
-          A fraud reporting platform enabling users to submit detailed reports,
-          access law enforcement contacts, and consumer protection resources.
-        </p>
-      </div>
-
-      <div class="group mb-5">
-        <div>
-          <div
-            class="inline-block h-[8px] w-[8px] bg-gray-400 group-hover:bg-white"
-          ></div>
-          <a
-            href="https://dekafarms.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="font-medium italic underline"
-            >Deka Farms</a
-          >
+  
+        <div class="group mb-5">
+          <div>
+            <div
+              class="inline-block h-[8px] w-[8px] bg-gray-400 group-hover:bg-white"
+            ></div>
+            <a
+              href="https://dekafarms.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-medium italic underline"
+              >Deka Farms</a
+            >
+          </div>
+          <p>
+            A responsive website showcasing agricultural services, food crops, and
+            livestock to attract and engage potential customers.
+          </p>
         </div>
-        <p>
-          A responsive website showcasing agricultural services, food crops, and
-          livestock to attract and engage potential customers.
-        </p>
-      </div>
+      -->
     </div>
   </div>
 </section>
@@ -276,11 +278,12 @@ layout: layouts/main.njk
               />
             </div>
             <div class="w-full md:w-2/3">
-              <p class="font-light">{{ article.data.category }}</p>
-              <h3 class="mb-2 font-semibold group-hover:underline">
+              <p class="text-xs font-light">{{ article.data.category }}</p>
+              <h3 class="text-lg font-medium group-hover:underline">
                 {{ article.data.title }}
               </h3>
-              <p class="text-xs font-semibold italic">
+              <p class="my-3 text-sm">{{ article.data.description }}</p>
+              <p class="text-xs font-light italic">
                 {{ article.date | date('MMMM d, yyyy') }} ·
                 {% set wordCount = article.content | wordCount %}
                 {{ (wordCount / 250) | round }}

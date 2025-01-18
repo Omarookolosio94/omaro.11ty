@@ -50,3 +50,7 @@ body {
   font-weight: normal;
   font-style: normal;
 }
+
+.page-btn{
+  @apply flex h-8 w-8 items-center justify-center bg-gray-600 text-white rounded-sm
+}

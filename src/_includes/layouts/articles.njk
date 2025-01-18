@@ -54,9 +54,9 @@ layout: layouts/altLayout.njk
     </div>
   </header>
 
-  <main class="min-h-[80vh] pt-6">{{ content | safe }}</main>
+  <main class="pt-6">{{ content | safe }}</main>
 
-  <footer class="mt-16">
+  <footer class="mt-10">
     {% set index = collections.articles | indexOf(page) %}
     {% set prevArticle = collections.articles[index - 1] %}
     {% set nextArticle = collections.articles[index + 1] %}
