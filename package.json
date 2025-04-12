@@ -10,8 +10,15 @@
     "serve": "eleventy --serve",
     "dev": "concurrently \"npm run watch:css\" \"npm run serve\""
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "Portfolio",
+    "Software Engineer",
+    "Full-stack Developer",
+    "C# Developer",
+    "React Developer",
+    "Angular Developer"
+  ],
+  "author": "Oghenemaro Okolosio",
   "license": "ISC",
   "dependencies": {
     "@11ty/eleventy": "^2.0.1",
