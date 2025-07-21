@@ -8,7 +8,7 @@
     "watch:css": "tailwindcss -i ./src/assets/css/tailwind.css -o ./dist/assets/css/styles.css --watch",
     "build": "eleventy && npm run build:css",
     "serve": "eleventy --serve",
-    "dev": "concurrently \"npm run watch:css\" \"npm run serve\""
+    "start": "concurrently \"npm run watch:css\" \"npm run serve\""
   },
   "keywords": [
     "Portfolio",
