@@ -59,17 +59,18 @@ module.exports = {
     },
   ],
 
-  consulting: [
+  partTime: [
     {
       period: "2022 — Now",
-      role: "Technical Consultant (part-time)",
+      role: "Lead Web Engineer (part-time)",
       company: "CampusRunz",
       url: "https://campusrunz.com",
       summary:
         "Students need a ride, a delivery, a room, groceries, food. Ten businesses that happen to live in one app.",
       points: [
-        "Advise on platform architecture across web, admin and mobile clients, and guide a small engineering team through moving them onto a rebuilt API without downtime.",
+        "Built all of CampusRunz's web applications hands-on, including the customer web app and the admin portal, from architecture through to production.",
         "Led the admin portal rebuild in React — lazy loading and client-side caching cut load time by over 10 seconds.",
+        "Leading the migration of the web, admin and mobile clients onto a rebuilt API without downtime.",
       ],
       stack: "TypeScript · React · Node.js · .NET · Kubernetes · AWS",
     },
