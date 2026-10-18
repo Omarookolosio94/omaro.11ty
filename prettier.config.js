@@ -1,6 +1,6 @@
 // prettier.config.js
 module.exports = {
-  plugins: ["prettier-plugin-tailwindcss", "prettier-plugin-jinja-template"],
+  plugins: ["prettier-plugin-jinja-template"],
   overrides: [
     {
       files: ["*.njk"],

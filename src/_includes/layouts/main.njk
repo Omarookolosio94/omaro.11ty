@@ -4,321 +4,184 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO Meta Tags -->
-    <title>{{ title or site.title }}</title>
-    <meta name="description" content="{{ description or site.description }}" />
-    <meta name="keywords" content="{{ keywords or site.keywords }}" />
-    <meta name="author" content="{{ author or site.author }}" />
+    {% set pageTitle = title or site.title %}
+    {% set pageDescription = description or site.description %}
+    {% set pageUrl = page.url | absoluteUrl %}
+    {% set pageImage = (image or site.image) | absoluteUrl %}
 
-    <!-- Open Graph / Social Sharing -->
-    <meta property="og:title" content="{{ title or site.title }}" />
-    <meta
-      property="og:description"
-      content="{{ description or site.description }}"
-    />
-    <meta property="og:url" content="{{ url or site.url }}" />
-    <meta property="og:image" content="{{ image or site.image }}" />
-    <meta property="og:type" content="website" />
+    <title>{{ pageTitle }}</title>
+    <meta name="description" content="{{ pageDescription }}" />
+    <meta name="author" content="{{ site.name }}" />
+    <meta name="robots" content="{{ robots or 'index, follow' }}" />
+    <link rel="canonical" href="{{ pageUrl }}" />
 
-    <!-- Twitter Cards -->
+    <meta property="og:type" content="{{ ogType or 'website' }}" />
+    <meta property="og:site_name" content="{{ site.name }}" />
+    <meta property="og:locale" content="{{ site.locale }}" />
+    <meta property="og:title" content="{{ pageTitle }}" />
+    <meta property="og:description" content="{{ pageDescription }}" />
+    <meta property="og:url" content="{{ pageUrl }}" />
+    <meta property="og:image" content="{{ pageImage }}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="{{ site.imageAlt }}" />
+
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="{{ title or site.title }}" />
-    <meta
-      name="twitter:description"
-      content="{{ description or site.description }}"
-    />
-    <meta name="twitter:image" content="{{ image or site.image }}" />
+    <meta name="twitter:title" content="{{ pageTitle }}" />
+    <meta name="twitter:description" content="{{ pageDescription }}" />
+    <meta name="twitter:image" content="{{ pageImage }}" />
+    <meta name="twitter:image:alt" content="{{ site.imageAlt }}" />
 
-    <link rel="canonical" href="{{ url or site.url }}" />
-
-    <!-- Favicon -->
+    <meta name="theme-color" content="#0d0d0d" />
+    <script>
+      // Apply the saved theme before first paint so there's no flash.
+      (function () {
+        var theme;
+        try { theme = localStorage.getItem("theme"); } catch (e) {}
+        if (theme !== "light" && theme !== "dark") {
+          theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        } else {
+          document.documentElement.dataset.theme = theme;
+        }
+        document.querySelector('meta[name="theme-color"]').content = theme === "light" ? "#f5f3ef" : "#0d0d0d";
+      })();
+    </script>
     <link rel="icon" href="/assets/favicon.ico" />
-    <!-- TODO: add manifest link -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <link rel="manifest" href="/assets/manifest.json" />
 
-    <!-- TODO: update favicons -->
-
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="/assets/css/tailwind.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="/assets/css/styles.css" />
   </head>
 
-  <body class="relative bg-gradient-to-b from-gray-900 to-black text-white">
-    <div
-      id="particles-js-top"
-      style="width: 100%; height: 75vh; position: absolute; top: 0; left: 0;z-index: -1;"
-    ></div>
+  <body>
+    <a class="skip" href="#content">Skip to content</a>
 
-    <header
-      class="fixed left-0 top-0 w-full bg-black bg-opacity-10 py-4 backdrop-blur-sm backdrop-filter"
-    >
-      <div class="mx-auto flex w-[95%] items-center justify-between">
-        <a href="/" class="flex items-center gap-2">
-          <img
-            src="/assets/images/maro.jpeg"
-            alt="Maro"
-            loading="lazy"
-            class="h-6 w-6 rounded-full bg-white"
-          />
-          <p
-            class="inline-flex bg-gradient-to-r from-blue-500 to-blue-200 bg-clip-text text-xs font-semibold text-transparent"
-          >
-            MARO
-          </p>
+    {% set navItems = [
+      { href: "/about/", text: "About" },
+      { href: "/contact/", text: "Contact" }
+    ] %}
+
+    <header class="site-header{% if page.url != '/' %} show-avatar{% endif %}" id="site-header">
+      <div class="container">
+        <a href="/" class="brand" aria-label="{{ cv.name }}, home">
+          <img src="/assets/images/maro-192.jpg" alt="" class="brand-avatar" width="24" height="24" />
+          <span class="brand-full">{{ cv.name }}</span>
+          <span class="brand-short">Maro</span>
         </a>
-
-        <nav class="flex items-center space-x-5 md:space-x-8">
-          <a
-            href="/"
-            class="{% if page.url == '/' %}text-white{% else %}text-gray-400{% endif %} hidden text-xs font-semibold hover:text-white md:block"
-          >
-            HOME
-          </a>
-          <a
-            href="/about"
-            class="{% if page.url == '/about/' %}text-white{% else %}text-gray-400{% endif %} hidden text-xs font-semibold hover:text-white md:block"
-          >
-            ABOUT
-          </a>
-          <a
-            href="/articles"
-            class="{% if page.url == '/articles/' %}text-white{% else %}text-gray-400{% endif %} hidden text-xs font-semibold hover:text-white md:block"
-          >
-            ARTICLES
-          </a>
-          <a
-            href="/contact"
-            class="{% if page.url == '/contact/' %}text-white{% else %}text-gray-400{% endif %} hidden text-xs font-semibold hover:text-white md:block"
-          >
-            CONTACT
-          </a>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://docs.google.com/document/d/1gq_vYZ3CEDzVkLXDMGbFHmYVXHPRBH0y2awXbaBVxec/edit?usp=sharing"
-            class="inline-flex items-center gap-2 rounded bg-gradient-to-r from-blue-500 to-blue-200 px-2 py-1 text-xs font-medium text-black hover:to-blue-300"
-          >
-            <span>RESUME</span>
-          </a>
-
-          <button
-            id="togglenav"
-            class="inline-flex h-[28px] w-[28px] items-center rounded text-xs font-medium md:hidden"
-          >
-            <span
-              class="iconify h-[24px] w-[24px] solar--hamburger-menu-broken"
-            ></span>
+        <nav class="nav" aria-label="Main">
+          {% for item in navItems %}
+            <a href="{{ item.href }}"{% if page.url.startsWith(item.href) %} aria-current="page"{% endif %}>{{ item.text }}</a>
+          {% endfor %}
+          <a href="{{ cv.resume }}" target="_blank" rel="noopener noreferrer" class="ext">Résumé</a>
+          <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle colour theme">
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1" />
+              <path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor" />
+            </svg>
           </button>
-        </nav>
-      </div>
-
-      <div
-        id="sidenav"
-        class="transition-height h-0 overflow-hidden duration-500 ease-in-out md:hidden"
-      >
-        <nav class="mx-auto flex w-[95%] flex-col gap-5 py-5">
-          <a
-            href="/"
-            class="{% if page.url == '/' %}text-white{% else %}text-gray-400{% endif %} font-semibold hover:text-white"
-          >
-            HOME
-          </a>
-          <a
-            href="/about"
-            class="{% if page.url == '/about/' %}text-white{% else %}text-gray-400{% endif %} font-semibold hover:text-white"
-          >
-            ABOUT
-          </a>
-          <a
-            href="/articles"
-            class="{% if page.url == '/articles/' %}text-white{% else %}text-gray-400{% endif %} font-semibold hover:text-white"
-          >
-            ARTICLES
-          </a>
-          <a
-            href="/contact"
-            class="{% if page.url == '/contact/' %}text-white{% else %}text-gray-400{% endif %} font-semibold hover:text-white md:block"
-          >
-            CONTACT
-          </a>
         </nav>
       </div>
     </header>
 
-    <main class="min-h-[80vh] pt-6">{{ content | safe }}</main>
+    <main id="content">
+      <div class="container">{{ content | safe }}</div>
+    </main>
 
-    <footer class="relative mt-12 py-8">
-      <div
-        id="particles-js-bottom"
-        style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;z-index: -1;"
-      ></div>
-
-      <div class="mx-auto w-[95%] text-center">
-        <!--TODO: Update footer design -->
-        <nav class="mb-4 flex justify-center space-x-8">
-          <a
-            href="/"
-            class="{% if page.url == '/' %}text-white{% else %}text-gray-400{% endif %} text-xs font-semibold hover:text-white"
-          >
-            Home
-          </a>
-          <a
-            href="/about"
-            class="{% if page.url == '/about/' %}text-white{% else %}text-gray-400{% endif %} text-xs font-semibold hover:text-white"
-          >
-            About
-          </a>
-          <a
-            href="/articles"
-            class="{% if page.url == '/articles/' %}text-white{% else %}text-gray-400{% endif %} text-xs font-semibold hover:text-white"
-          >
-            Articles
-          </a>
-          <a
-            href="/contact"
-            class="{% if page.url == '/contact/' %}text-white{% else %}text-gray-400{% endif %} text-xs font-semibold hover:text-white"
-          >
-            Contact
-          </a>
-        </nav>
-
-        <div class="my-10">
-          <img
-            src="/assets/images/maro.jpeg"
-            alt="Oghenemaro Okolosio"
-            loading="lazy"
-            class="mx-auto mb-5 h-12 w-12 rounded-full border-2 border-white bg-white"
-          />
-
-          <div
-            class="flex w-full items-center justify-center gap-5 text-gray-500"
-          >
-            <a
-              href="mailto:omarookolosio94@gmail.com"
-              class="font-semibold hover:text-white"
-            >
-              <span class="iconify text-xl mdi--email"></span
-            ></a>
-
-            <a
-              href="https://www.linkedin.com/in/oghenemaro-okolosio/"
-              target="_blank"
-              class="font-semibold hover:text-white"
-              rel="noopener noreferrer"
-            >
-              <span class="iconify text-lg logos--linkedin-icon"></span>
-            </a>
-
-            <a
-              href="https://github.com/Omarookolosio94"
-              target="_blank"
-              class="font-semibold hover:text-white"
-              rel="noopener noreferrer"
-            >
-              <span class="iconify text-lg logos--github-icon"></span>
-            </a>
-
-            <a
-              href="https://wa.me/2347019069486"
-              class="font-semibold hover:text-white"
-            >
-              <span class="iconify text-lg logos--whatsapp-icon"></span>
-            </a>
-          </div>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-inner">
+          <p>© {% year %} {{ cv.name }}</p>
+          <nav aria-label="Elsewhere">
+            <a href="https://www.linkedin.com/in/oghenemaro-okolosio/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/Omarookolosio94" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="mailto:omarookolosio94@gmail.com">Email</a>
+          </nav>
         </div>
-
-        <p class="text-xs text-gray-500">
-          Copyright © Oghenemaro Okolosio <span id="copyright-year"></span>
-        </p>
-
-        <a
-          href="https://dribbble.com/Liliaroth"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-xs text-gray-500 block hover:underline"
-          >UI Design by Gaël Duval</a
-        >
-        <a
-          href="https://www.11ty.dev/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-xs text-gray-500 block hover:underline"
-          >Built with 11ty</a
-        >
       </div>
     </footer>
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Oghenemaro Okolosio",
-        "url": "https://omaro.netlify.app",
-        "image": "https://omaro.netlify.app/images/profile.jpg",
-        "sameAs": ["https://www.linkedin.com/in/oghenemaro-okolosio/"],
-        "jobTitle": "Software Engineer",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Stanbic IBTC Bank"
-        }
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "{{ site.url }}/#website",
+            "url": "{{ site.url }}/",
+            "name": "{{ site.name }}",
+            "inLanguage": "en"
+          },
+          {
+            "@type": "Person",
+            "@id": "{{ site.url }}/#person",
+            "name": "{{ cv.name }}",
+            "url": "{{ site.url }}/",
+            "image": "{{ '/assets/images/maro.jpg' | absoluteUrl }}",
+            "jobTitle": "{{ cv.role }}",
+            "worksFor": { "@type": "Organization", "name": "Union Bank of Nigeria" },
+            "alumniOf": { "@type": "CollegeOrUniversity", "name": "{{ cv.education.school }}" },
+            "address": { "@type": "PostalAddress", "addressLocality": "Lagos", "addressCountry": "NG" },
+            "email": "mailto:omarookolosio94@gmail.com",
+            "knowsAbout": ["Software Engineering", "TypeScript", "React", "Next.js", "Node.js", ".NET", "REST API design", "Fintech"],
+            "sameAs": [
+              "https://www.linkedin.com/in/oghenemaro-okolosio/",
+              "https://github.com/Omarookolosio94"
+            ]
+          }
+        ]
       }
     </script>
-
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"
-      integrity="sha512-Kef5sc7gfTacR7TZKelcrRs15ipf7+t+n7Zh6mKNJbmW+/RRdCW9nwfLn4YX0s2nO6Kv5Y2ChqgIakaC6PW09A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-
-    <script src="/assets/particleTop.js"></script>
-    <script src="/assets/particleBottom.js"></script>
-
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const yearSpan = document.getElementById("copyright-year");
-        const currentYear = new Date().getFullYear();
-        yearSpan.textContent = currentYear;
-      });
+      (function () {
+        var root = document.documentElement;
+        var button = document.getElementById("theme-toggle");
+        var meta = document.querySelector('meta[name="theme-color"]');
+        var system = window.matchMedia("(prefers-color-scheme: light)");
 
-      document.addEventListener("DOMContentLoaded", function () {
-        const toggleButton = document.getElementById("togglenav");
-        const sideNav = document.getElementById("sidenav");
-
-        // Function to close the sidenav
-        function closeSideNav() {
-          sideNav.classList.remove("h-[180px]");
-          sideNav.classList.add("h-0");
-          toggleButton.innerHTML =
-            '<span class="iconify solar--hamburger-menu-broken text-lg"></span>';
+        function current() {
+          return root.dataset.theme || (system.matches ? "light" : "dark");
         }
 
-        // Add an event listener to the toggle button
-        toggleButton.addEventListener("click", function (event) {
-          // Prevent outside click listener from triggering
-          event.stopPropagation();
+        function label() {
+          var next = current() === "dark" ? "light" : "dark";
+          button.setAttribute("aria-label", "Switch to " + next + " theme");
+          button.title = "Switch to " + next + " theme";
+        }
 
-          // Toggle the classes for sideNav
-          if (sideNav.classList.contains("h-0")) {
-            sideNav.classList.remove("h-0");
-            sideNav.classList.add("h-[180px]");
-            toggleButton.innerHTML =
-              '<span class="iconify solar--close-square-broken h-[24px] w-[24px]"></span>';
-          } else {
-            closeSideNav();
-          }
+        button.addEventListener("click", function () {
+          var next = current() === "dark" ? "light" : "dark";
+          root.dataset.theme = next;
+          meta.content = next === "light" ? "#f5f3ef" : "#0d0d0d";
+          try { localStorage.setItem("theme", next); } catch (e) {}
+          label();
         });
 
-        // Add an event listener for clicks outside the sidenav
-        document.addEventListener("click", function (event) {
-          const isClickInside =
-            sideNav.contains(event.target) ||
-            toggleButton.contains(event.target);
+        label();
+      })();
 
-          if (!isClickInside && sideNav.classList.contains("h-[180px]")) {
-            closeSideNav();
-          }
-        });
-      });
+      (function () {
+        var header = document.getElementById("site-header");
+
+        // Hairline under the header once the page has moved.
+        function onScroll() {
+          header.classList.toggle("is-scrolled", window.scrollY > 0);
+        }
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+
+        // On the home page, the header photo takes over once the portrait passes under the header.
+        var portrait = document.querySelector(".portrait");
+        if (!portrait || !("IntersectionObserver" in window)) return;
+        new IntersectionObserver(
+          function (entries) {
+            header.classList.toggle("show-avatar", !entries[0].isIntersecting);
+          },
+          { rootMargin: "-" + header.offsetHeight + "px 0px 0px 0px" }
+        ).observe(portrait);
+      })();
     </script>
   </body>
 </html>

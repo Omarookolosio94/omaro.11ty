@@ -1,45 +1,14 @@
-const { format } = require("date-fns");
-const pluginSitemap = require("@quasibit/eleventy-plugin-sitemap");
+const site = require("./src/_data/site.js");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
-  eleventyConfig.addPassthroughCopy("robots.txt");
+  eleventyConfig.addPassthroughCopy({ "robots.txt": "robots.txt" });
+  eleventyConfig.addPassthroughCopy({ "src/_redirects": "_redirects" });
 
-  /*
-  eleventyConfig.addCollection("articles", function (collection) {
-    return collection.getFilteredByGlob("./src/articles/*.md").reverse();
-  });*/
+  eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
 
-  eleventyConfig.addCollection("articles", function (collectionApi) {
-    return collectionApi.getFilteredByGlob("src/articles/*.md").sort((a, b) => {
-      return a.date - b.date; // Sort by date
-    });
-  });
-
-  eleventyConfig.addFilter("indexOf", function (arr, value) {
-    return arr.findIndex(item => item.inputPath === value.inputPath);
-  });
-
-  eleventyConfig.addFilter("divide", (num, divisor) => {
-    return num / divisor;
-  });
-
-  eleventyConfig.addFilter("date", (date, formatStr) => {
-    return format(new Date(date), formatStr);
-  });
-
-  eleventyConfig.addFilter("wordCount", (content) => {
-    if (content && typeof content === "string") {
-      return content.split(/\s+/).length;
-    }
-    return 0;
-  });
-
-  eleventyConfig.addPlugin(pluginSitemap, {
-    sitemap: {
-      hostname: "https://omaro.netlify.app",
-    },
-  });
+  // Absolute URL for canonical / Open Graph tags.
+  eleventyConfig.addFilter("absoluteUrl", (path) => new URL(path, site.url).href);
 
   return {
     dir: {

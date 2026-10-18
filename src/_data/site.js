@@ -1,10 +1,10 @@
 module.exports = {
-  title: "Oghenemaro Okolosio - Software Engineer",
+  name: "Oghenemaro Okolosio",
+  title: "Oghenemaro Okolosio — Senior Software Engineer",
   description:
-    "Oghenemaro Okolosio is a highly skilled Software Engineer with expertise in building scalable backend services, modern front-end applications, and optimizing systems for performance. Experienced in leading projects for top organizations.",
-  keywords:
-    "Oghenemaro Okolosio, Software Engineer, Backend Development, Frontend Development, Full Stack Developer, C#, JavaScript, TypeScript, React, Next.js, Node.js, ASP.NET, Azure, AWS",
-  author: "Oghenemaro Okolosio",
+    "Oghenemaro Okolosio is a senior software engineer in Lagos with over six years building payments, lending and data platforms in TypeScript, React, Node.js and .NET.",
   url: "https://omaro.netlify.app",
-  image: "https://omaro.netlify.app/assets/images/maro.jpeg",
+  image: "/assets/og.png",
+  imageAlt: "Oghenemaro Okolosio — Senior Software Engineer",
+  locale: "en_GB",
 };

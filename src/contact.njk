@@ -1,93 +1,26 @@
 ---
-layout: layouts/altLayout.njk
-title: "Contact Oghenemaro Okolosio"
-description: "Get in touch with Oghenemaro Okolosio. Whether you're looking for collaboration opportunities or have any questions about my work, feel free to reach out."
-keywords: "Contact, Oghenemaro Okolosio, Software Engineer, Collaboration, Reach Out"
-author: "Oghenemaro Okolosio"
-url: "https://omaro.netlify.app/contact"
-image: "https://omaro.netlify.app/assets/images/maro.jpeg"
+title: "Contact — Oghenemaro Okolosio"
+description: "Get in touch with Oghenemaro Okolosio by email, LinkedIn or GitHub, or book a call."
+layout: layouts/main.njk
 ---
 
-<section class="mx-auto mb-[200px] w-[95%] pt-[160px]">
-  <div class="flex flex-col justify-start gap-5 md:flex-row">
-    <h2 class="w-full font-normal md:w-1/4"></h2>
+<section class="section intro">
+  <h1>Contact</h1>
+  <p class="role">{{ cv.location }} · {{ cv.availability }}</p>
+  <p>
+    Whether it's a role, a system that needs untangling, or a product you want
+    to get off the ground, I'm glad to hear about it. Email is best.
+  </p>
+</section>
 
-    <div class="w-full text-gray-400 md:w-2/4">
-      <div class="mb-3">
-        <p
-          class="inline-flex bg-gradient-to-r from-blue-500 to-blue-200 bg-clip-text font-normal text-transparent"
-        >
-          GET IN TOUCH.
-        </p>
-
-        <p class="mb-2">
-          Have an innovative project in mind? Looking to scale your business
-          with a top-notch web application or need expert advice on optimizing
-          your current system?
-        </p>
-
-        <p class="mb-2">
-          Whether you're a startup seeking a reliable partner or an established
-          company aiming to enhance your digital presence, I'm here to help.
-        </p>
-
-        <p class="mb-5">
-          Let's collaborate to turn your ideas into reality with cutting-edge
-          technology and efficient, scalable solutions. Feel free to reach out
-          for consultations, project discussions, or any technical inquiries.
-        </p>
-      </div>
-      <div class="mt-8 grid grid-cols-2 gap-5">
-        <div class="col-span-1">
-          <h5 class="text-[14px]">EMAIL</h5>
-          <a
-            href="mailto:omarookolosio94@gmail.com"
-            class="font-semibold italic underline"
-            >send a mail</a
-          >
-        </div>
-
-        <div class="col-span-1">
-          <h5 class="text-[14px]">LINKEDIN</h5>
-          <a
-            href="https://www.linkedin.com/in/oghenemaro-okolosio/"
-            target="_blank"
-            class="font-semibold italic underline"
-            rel="noopener noreferrer"
-            >@oghenemaro-okolosio</a
-          >
-        </div>
-
-        <div class="col-span-1">
-          <h5 class="text-[14px]">GITHUB</h5>
-          <a
-            href="https://github.com/Omarookolosio94"
-            target="_blank"
-            class="font-semibold italic underline"
-            rel="noopener noreferrer"
-            >@omarookolosio94</a
-          >
-        </div>
-
-        <div class="col-span-1">
-          <h5 class="text-[14px]">WHATSAPP</h5>
-          <a
-            href="https://wa.me/2347019069486"
-            class="font-semibold italic underline"
-            >send a message</a
-          >
-        </div>
-        <div class="col-span-1">
-          <h5 class="text-[14px]">MEET</h5>
-          <a
-            href="https://calendar.app.google/DdpEDtJUyqwCBk6M7"
-            target="_blank"
-            class="font-semibold italic underline"
-            rel="noopener noreferrer"
-            >book an appointment</a
-          >
-        </div>
-      </div>
-    </div>
-  </div>
+<section class="section">
+  <h2 class="label">Reach me</h2>
+  <ul class="rows">
+    {% for item in cv.contact %}
+      <li class="row">
+        <span class="aside">{{ item.label }}</span>
+        <a href="{{ item.url }}"{% if not item.url.startsWith("mailto:") %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ item.text }}</a>
+      </li>
+    {% endfor %}
+  </ul>
 </section>

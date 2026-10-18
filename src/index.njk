@@ -1,326 +1,67 @@
 ---
-title: "Oghenemaro Okolosio - Software Engineer"
-description: "Welcome to the personal website of Oghenemaro Okolosio, a Software Engineer with expertise in backend services, full-stack development, and system optimization. Discover my projects and experience."
-keywords: "Oghenemaro Okolosio, Software Engineer, Full Stack Developer, Backend Development, Projects"
-author: "Oghenemaro Okolosio"
-url: "https://omaro.netlify.app/home"
-image: "https://omaro.netlify.app/assets/images/maro.jpeg"
+title: "Oghenemaro Okolosio — Senior Software Engineer"
+description: "Oghenemaro Okolosio is a senior software engineer in Lagos with over six years building payments, lending and data platforms in TypeScript, React, Node.js and .NET."
 layout: layouts/main.njk
 ---
 
-<!-- Hero Section -->
-<section class="flex h-[75vh] flex-col items-center justify-center text-center">
-  <img
-    src="/assets/images/maro.jpeg"
-    alt="Profile"
-    loading="lazy"
-    class="mb-5 h-[200px] w-[200px] rounded-full bg-white"
-  />
-  <h1 class="mb-10 capitalize">
-    <p
-      class="inline-flex bg-gradient-to-r from-blue-500 to-blue-200 bg-clip-text text-2xl font-semibold text-transparent"
-    >
-      Oghenemaro Okolosio
-    </p>
-    <p class="block text-sm text-gray-400">Software Engineer</p>
-  </h1>
-  <div class="flex flex-col justify-center gap-5 sm:flex-row">
-    <a
-      href="/contact"
-      class="flex items-center gap-2 rounded bg-white px-8 py-2 text-xs font-medium text-black"
-    >
-      <span class="iconify h-4 w-4 mdi--phone-in-talk-outline"></span>
-      <span> Get In Touch </span>
-    </a>
-    <a
-      target="_blank"
-      rel="noopener noreferrer"
-      href="https://docs.google.com/document/d/1gq_vYZ3CEDzVkLXDMGbFHmYVXHPRBH0y2awXbaBVxec/edit?usp=sharing"
-      class="inline-flex items-center gap-2 rounded bg-gradient-to-r from-blue-500 to-blue-200 px-8 py-2 text-xs font-medium text-black hover:to-blue-300"
-    >
-      <span class="iconify h-4 w-4 mdi--resume"></span>
-      <span>My Resume</span>
-    </a>
-  </div>
+<section class="section intro">
+  <img src="/assets/images/maro-192.jpg" alt="Portrait of Oghenemaro Okolosio" class="portrait" width="48" height="48" />
+  <h1>{{ cv.name }}</h1>
+  <p class="role">{{ cv.role }}</p>
+
+  <p>
+    Over six years ago I started writing code for banks, and most of it ended up
+    in front of someone: a merchant at checkout, a customer halfway through
+    KYC, a parent watching a bus move on a map.
+  </p>
+  <p>
+    I build backends and the interfaces on top of them — TypeScript, React and
+    Next.js, with Node or .NET behind. Today I lead engineering on Alero at
+    <a href="https://www.unionbankng.com" target="_blank" rel="noopener noreferrer">Union Bank of Nigeria</a>.
+  </p>
+  <p class="meta" style="margin-top: 21.6px">{{ cv.location }} · {{ cv.availability }}</p>
 </section>
 
-<!-- About Section -->
-<section class="mx-auto w-[95%] py-12">
-  <div class="flex flex-col justify-start gap-5 md:flex-row">
-    <div class="w-full md:w-1/4">
-      <p
-        class="inline-flex bg-gradient-to-r from-blue-500 to-blue-200 bg-clip-text font-normal text-transparent"
-      >
-        ABOUT
-      </p>
-    </div>
-    <p class="w-full text-gray-400 md:w-3/4 lg:w-2/4">
-      A seasoned Software Engineer with extensive experience building robust,
-      scalable, and innovative solutions across multiple domains. With expertise
-      in JavaScript, TypeScript, React, Angular, Node.js, and .NET, I have
-      consistently delivered high-quality software for top-tier legacy
-      organisations and startups, including Stanbic IBTC Bank, ITab Solutions,
-      and Campusrunz. My strong background in front and backend technologies
-      enables me to take projects from concept to completion efficiently.
-    </p>
-  </div>
+<section class="section">
+  <h2 class="label">Experience</h2>
+  <ul class="rows">
+    {% for job in cv.experience %}
+      <li class="row">
+        <span class="aside">{{ job.period }}</span>
+        <div>
+          <p class="title">{{ job.role }}, {{ job.company }}</p>
+          <p class="desc">{{ job.summary }}</p>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+  <p class="more"><a href="/about/">Full experience and skills</a></p>
 </section>
 
-<section class="mx-auto w-[95%] py-12">
-  <div class="flex flex-col justify-start gap-5 md:flex-row">
-    <div class="w-full md:w-1/4">
-      <p
-        class="inline-flex bg-gradient-to-r from-blue-500 to-blue-200 bg-clip-text font-normal text-transparent"
-      >
-        SOME WORKS
-      </p>
-    </div>
-
-    <div class="w-full text-gray-400 md:w-3/4 lg:w-2/4">
-      <div class="group mb-5">
-        <div>
-          <div
-            class="inline-block h-[8px] w-[8px] bg-gray-400 group-hover:bg-white"
-          ></div>
-          <a
-            href="https://www.stanbicibtcbank.com/nigeriabank/business/products-and-services/ways-to-bank/buy-now-pay-later"
-            class="font-medium italic underline"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Stanbic IBTC BNPL</a
-          >
-        </div>
-        <p>
-          A Buy Now Pay Later platform allowing merchants to offer flexible
-          installment payments with real-time feedback and integration.
-        </p>
-      </div>
-
-      <div class="group mb-5">
-        <div>
-          <div
-            class="inline-block h-[8px] w-[8px] bg-gray-400 group-hover:bg-white"
-          ></div>
-          <a
-            href="https://campusrunz.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="font-medium italic underline"
-            >CampusRunz</a
-          >
-        </div>
-        <p>
-          A platform designed to simplify student life by offering convenient
-          and affordable services.
-        </p>
-      </div>
-
-      <div class="group mb-5">
-        <div>
-          <div
-            class="inline-block h-[8px] w-[8px] bg-gray-400 group-hover:bg-white"
-          ></div>
-          <a
-            href="https://ezcash.stanbicibtc.com/ezcash"
-            class="font-medium italic underline"
-            target="_blank"
-            rel="noopener noreferrer"
-            >EZ Cash</a
-          >
-        </div>
-        <p>A loan platform for quick and seamless loan applications.</p>
-      </div>
-
-      <div class="group mb-5">
-        <div>
-          <div
-            class="inline-block h-[8px] w-[8px] bg-gray-400 group-hover:bg-white"
-          ></div>
-          <a
-            href="https://www.starbrand.ng/"
-            class="font-medium italic underline"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Star Brand</a
-          >
-        </div>
-        <p>An online clothing e-commerce platform.</p>
-      </div>
-
-      <!-- <div class="group mb-5">
-        <div>
-          <div
-            class="inline-block h-[8px] w-[8px] bg-gray-400 group-hover:bg-white"
-          ></div>
-          <a
-            href="https://ienroll.stanbicibtc.com:8444/OnlineAccountOnboarding"
-            class="font-medium italic underline"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Online Account Onboarding</a
-          >
-        </div>
-        <p>
-          A digital solution for onboarding new bank accounts, streamlining KYC
-          documentation and error feedback mechanisms.
-        </p>
-      </div> -->
-
-      <div class="group mb-5">
-        <div>
-          <div
-            class="inline-block h-[8px] w-[8px] bg-gray-400 group-hover:bg-white"
-          ></div>
-          <a
-            href="https://admin.busbuzzer.com/"
-            class="font-medium italic underline"
-            target="_blank"
-            rel="noopener noreferrer"
-            >BusBuzzer Admin</a
-          >
-        </div>
-        <p>
-          A web admin panel for managing school transportation services with
-          real-time tracking and route optimization.
-        </p>
-      </div>
-
-      <!-- 
-        <div class="group mb-5">
-          <div>
-            <div
-              class="inline-block h-[8px] w-[8px] bg-gray-400 group-hover:bg-white"
-            ></div>
-            <a
-              href="https://usewebeffects-001-site1.atempurl.com/swagger/index.html"
-              class="font-medium italic underline"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Proquotes</a
-            >
-          </div>
-          <p>
-            An API for managing customer quotation requests, enabling merchants to
-            streamline communication and send detailed quotes efficiently.
-          </p>
-        </div>
-  
-        <div class="group mb-5">
-          <div>
-            <div
-              class="inline-block h-[8px] w-[8px] bg-gray-400 group-hover:bg-white"
-            ></div>
-            <a
-              href="https://www.itapsolutions.com/"
-              class="font-medium italic underline"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Xfund</a
-            >
-          </div>
-          <p>
-            A portfolio and asset management system with features like automated
-            valuations, financial instrument tracking, and reporting tools.
-          </p>
-        </div>
-  
-        <div class="group mb-5">
-          <div>
-            <div
-              class="inline-block h-[8px] w-[8px] bg-gray-400 group-hover:bg-white"
-            ></div>
-            <a
-              href="https://useprism.co/home"
-              class="font-medium italic underline"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Prism</a
-            >
-          </div>
-          <p>
-            A fraud reporting platform enabling users to submit detailed reports,
-            access law enforcement contacts, and consumer protection resources.
-          </p>
-        </div>
-  
-        <div class="group mb-5">
-          <div>
-            <div
-              class="inline-block h-[8px] w-[8px] bg-gray-400 group-hover:bg-white"
-            ></div>
-            <a
-              href="https://dekafarms.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="font-medium italic underline"
-              >Deka Farms</a
-            >
-          </div>
-          <p>
-            A responsive website showcasing agricultural services, food crops, and
-            livestock to attract and engage potential customers.
-          </p>
-        </div>
-      -->
-    </div>
-  </div>
+<section class="section">
+  <h2 class="label">Selected work</h2>
+  <ul class="rows">
+    {% for item in cv.work %}
+      <li class="row">
+        <span class="aside">
+          {% if item.url %}
+            <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="ext">{{ item.name }}</a>
+          {% else %}
+            <span class="title">{{ item.name }}</span>
+          {% endif %}
+        </span>
+        <p>{{ item.description }}</p>
+      </li>
+    {% endfor %}
+  </ul>
 </section>
 
-<section class="mx-auto w-[95%] py-12">
-  <div class="flex flex-col justify-start gap-5 md:flex-row">
-    <div class="w-full md:w-1/4">
-      <p
-        class="inline-flex bg-gradient-to-r from-blue-500 to-blue-200 bg-clip-text font-normal text-transparent"
-      >
-        ARTICLES
-      </p>
-    </div>
-
-    <div class="w-full md:w-3/4 lg:w-2/4">
-      {% for article in collections.articles.slice(0, 3) %}
-        <div
-          class="group mb-16 flex justify-between gap-5 border-b-0 border-b-gray-500 transition duration-300 ease-in-out hover:cursor-pointer"
-        >
-          <a
-            href="{{ article.url }}"
-            class="flex w-full flex-col justify-start gap-5 text-gray-400 sm:flex-row"
-          >
-            <div class="w-full overflow-hidden md:w-[200px] md:max-w-[200px]">
-              <img
-                src="{{ article.data.image }}"
-                loading="lazy"
-                alt="Article Image"
-                class="h-[160px] w-full rounded object-cover transition duration-300 ease-in-out group-hover:scale-105 md:h-[100px]"
-              />
-            </div>
-            <div class="w-full md:w-2/3">
-              <p class="text-xs font-light">{{ article.data.category }}</p>
-              <h3 class="text-lg font-medium group-hover:underline">
-                {{ article.data.title }}
-              </h3>
-              <p class="my-3 text-sm">{{ article.data.description }}</p>
-              <p class="text-xs font-light italic">
-                {{ article.date | date('MMMM d, yyyy') }} ·
-                {% set wordCount = article.content | wordCount %}
-                {{ (wordCount / 250) | round }}
-                min read
-              </p>
-            </div>
-          </a>
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-  <div class="md:flex-row˝ mt-8 flex flex-col items-center justify-start gap-5">
-    <div class="w-full md:w-1/4"></div>
-    <div class="flex w-full items-center justify-center md:w-3/4 lg:w-2/4">
-      <a
-        href="/articles"
-        class="flex items-center gap-2 rounded bg-white px-8 py-2 text-xs font-medium text-black"
-      >
-        <span> Read More </span>
-        <span class="iconify h-4 w-4 mdi--navigate-next"></span>
-      </a>
-    </div>
-  </div>
+<section class="section">
+  <h2 class="label">Contact</h2>
+  <p>
+    Happy to talk about engineering roles, a project, or anything on this
+    page. The fastest way to reach me is
+    <a href="mailto:omarookolosio94@gmail.com">email</a>, or
+    <a href="https://calendar.app.google/DdpEDtJUyqwCBk6M7" target="_blank" rel="noopener noreferrer">book a call</a>.
+  </p>
 </section>
