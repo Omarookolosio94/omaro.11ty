@@ -62,7 +62,7 @@ module.exports = {
   partTime: [
     {
       period: "2022 — Now",
-      role: "Lead Web Engineer (part-time)",
+      role: "Principal Engineer (part-time)",
       company: "CampusRunz",
       url: "https://campusrunz.com",
       summary:
@@ -70,7 +70,7 @@ module.exports = {
       points: [
         "Built all of CampusRunz's web applications hands-on, including the customer web app and the admin portal, from architecture through to production.",
         "Led the admin portal rebuild in React — lazy loading and client-side caching cut load time by over 10 seconds.",
-        "Leading the migration of the web, admin and mobile clients onto a rebuilt API without downtime.",
+        "Own the platform's architecture and technical direction, and lead a four-engineer team migrating the web, admin and mobile clients onto a rebuilt API without downtime.",
       ],
       stack: "TypeScript · React · Node.js · .NET · Kubernetes · AWS",
     },
