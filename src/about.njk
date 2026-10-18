@@ -4,7 +4,7 @@ description: "Experience, part-time work and skills of Oghenemaro Okolosio: lead
 layout: layouts/main.njk
 ---
 
-<section class="section intro">
+<section class="section intro" data-section="intro">
   <h1>About</h1>
   <p class="role">{{ cv.role }} · {{ cv.location }}</p>
 
@@ -23,11 +23,11 @@ layout: layouts/main.njk
   </p>
 </section>
 
-<section class="section">
+<section class="section" data-section="experience">
   <h2 class="label">Experience</h2>
   <ul class="rows">
     {% for job in cv.experience %}
-      <li class="row">
+      <li class="row" data-narrate="experience-{{ loop.index0 }}">
         <span class="aside">{{ job.period }}</span>
         <div>
           <p class="title">
@@ -45,11 +45,11 @@ layout: layouts/main.njk
   </ul>
 </section>
 
-<section class="section">
+<section class="section" data-section="part-time">
   <h2 class="label">Part-time & contract</h2>
   <ul class="rows">
     {% for job in cv.partTime %}
-      <li class="row">
+      <li class="row" data-narrate="part-time-{{ loop.index0 }}">
         <span class="aside">{{ job.period }}</span>
         <div>
           <p class="title">
@@ -71,7 +71,7 @@ layout: layouts/main.njk
   </ul>
 </section>
 
-<section class="section">
+<section class="section" data-section="skills">
   <h2 class="label">Skills</h2>
   <ul class="rows">
     {% for group in cv.skills %}
@@ -83,7 +83,7 @@ layout: layouts/main.njk
   </ul>
 </section>
 
-<section class="section">
+<section class="section" data-section="education">
   <h2 class="label">Education</h2>
   <ul class="rows">
     <li class="row">

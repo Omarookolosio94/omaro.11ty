@@ -4,7 +4,7 @@ description: "Get in touch with Oghenemaro Okolosio by email, LinkedIn or GitHub
 layout: layouts/main.njk
 ---
 
-<section class="section intro">
+<section class="section intro" data-section="intro">
   <h1>Contact</h1>
   <p class="role">{{ cv.location }} · {{ cv.availability }}</p>
   <p>
@@ -13,7 +13,7 @@ layout: layouts/main.njk
   </p>
 </section>
 
-<section class="section">
+<section class="section" data-section="reach">
   <h2 class="label">Reach me</h2>
   <ul class="rows">
     {% for item in cv.contact %}

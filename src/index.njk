@@ -4,7 +4,7 @@ description: "Oghenemaro Okolosio is a senior software engineer in Lagos with ov
 layout: layouts/main.njk
 ---
 
-<section class="section intro">
+<section class="section intro" data-section="intro">
   <img src="/assets/images/maro-192.jpg" alt="Portrait of Oghenemaro Okolosio" class="portrait" width="48" height="48" />
   <h1>{{ cv.name }}</h1>
   <p class="role">{{ cv.role }}</p>
@@ -22,11 +22,11 @@ layout: layouts/main.njk
   <p class="meta" style="margin-top: 21.6px">{{ cv.location }} · {{ cv.availability }}</p>
 </section>
 
-<section class="section">
+<section class="section" data-section="experience">
   <h2 class="label">Experience</h2>
   <ul class="rows">
     {% for job in cv.experience %}
-      <li class="row">
+      <li class="row" data-narrate="experience-{{ loop.index0 }}">
         <span class="aside">{{ job.period }}</span>
         <div>
           <p class="title">{{ job.role }}, {{ job.company }}</p>
@@ -38,11 +38,11 @@ layout: layouts/main.njk
   <p class="more"><a href="/about/">Full experience and skills</a></p>
 </section>
 
-<section class="section">
+<section class="section" data-section="work">
   <h2 class="label">Selected work</h2>
   <ul class="rows">
     {% for item in cv.work %}
-      <li class="row">
+      <li class="row" data-narrate="work-{{ item.id }}">
         <span class="aside">
           {% if item.url %}
             <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="ext">{{ item.name }}</a>
@@ -56,7 +56,7 @@ layout: layouts/main.njk
   </ul>
 </section>
 
-<section class="section">
+<section class="section" data-section="contact">
   <h2 class="label">Contact</h2>
   <p>
     Happy to talk about engineering roles, a project, or anything on this

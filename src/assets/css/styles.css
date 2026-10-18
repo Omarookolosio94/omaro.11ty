@@ -112,6 +112,114 @@ img {
   height: 12.6px;
 }
 
+/* ---------- Listen (read aloud) ---------- */
+
+.listen {
+  display: flex;
+  align-items: center;
+  gap: 14.4px;
+  margin-bottom: 43.2px;
+  font-size: var(--text-sm);
+  color: var(--faint);
+}
+
+.listen[hidden] {
+  display: none;
+}
+
+.listen-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7.2px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 150ms ease;
+}
+
+.listen-button:hover {
+  color: var(--fg);
+}
+
+.listen-button[hidden] {
+  display: none;
+}
+
+.listen-button:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 2.7px;
+  border-radius: 1.8px;
+}
+
+.listen-button svg {
+  width: 10.8px;
+  height: 10.8px;
+  color: var(--accent);
+}
+
+.listen-button .icon-pause,
+.listen-button.is-playing .icon-play {
+  display: none;
+}
+
+.listen-button.is-playing .icon-pause {
+  display: block;
+}
+
+.listen-float {
+  position: fixed;
+  left: 50%;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 14.4px;
+  padding: 9px 16.2px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+  font-size: var(--text-sm);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 10.8px);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.listen-float[hidden] {
+  display: none;
+}
+
+.listen-float.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+/* What's being narrated lifts to full-contrast text; its section label takes the accent. */
+#read-root .is-reading,
+#read-root .is-reading .aside,
+#read-root .is-reading .role,
+#read-root .is-reading .meta {
+  color: var(--fg);
+}
+
+#read-root .is-reading .label,
+#read-root .is-reading.label {
+  color: var(--accent);
+}
+
+#read-root p,
+#read-root li,
+#read-root .aside,
+#read-root .label,
+#read-root .role,
+#read-root .meta {
+  transition: color 200ms ease;
+}
+
 html {
   -webkit-text-size-adjust: 100%;
 }

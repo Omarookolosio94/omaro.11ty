@@ -90,21 +90,25 @@ module.exports = {
 
   work: [
     {
+      id: "bnpl",
       name: "Stanbic IBTC BNPL",
       url: "https://www.stanbicibtcbank.com/nigeriabank/business/products-and-services/ways-to-bank/buy-now-pay-later",
       description: "Buy Now Pay Later for merchants, with live status for everyone involved.",
     },
     {
-      name: "CampusRunz",
-      url: "https://campusrunz.com",
-      description: "Rides, deliveries, food and housing for students, in one app.",
-    },
-    {
+      id: "ezcash",
       name: "EZ Cash",
       url: "https://ezcash.stanbicibtc.com/ezcash",
       description: "Instant loans. Bulk processing went from 25 minutes to under 6.",
     },
     {
+      id: "campusrunz",
+      name: "CampusRunz",
+      url: "https://campusrunz.com",
+      description: "Rides, deliveries, food and housing for students, in one app.",
+    },
+    {
+      id: "busbuzzer",
       name: "BusBuzzer",
       url: "https://admin.busbuzzer.com/",
       description: "Operator admin and live tracking for electric school buses.",
