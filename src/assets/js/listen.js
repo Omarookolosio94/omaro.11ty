@@ -18,6 +18,7 @@
     // Names: "o-geh-ne-ma-row".
     [/\bOghenemaro\b/g, "Oh-geh-neh-mah-roe"],
     [/\bMaro\b/g, "Mah-roe"],
+    [/\bITab\b/g, "eye-tab"],
     [/\bASP\.NET\b/g, "A S P dot net"],
     [/\.NET\b/g, "dot net"],
     [/\bC#/g, "C sharp"],
@@ -197,9 +198,18 @@
     });
   }
 
+  // We never rely on speechSynthesis.pause()/resume(): they're unreliable on
+  // mobile (Android cancels, iOS can hang after the screen locks). Instead,
+  // pausing cancels speech and remembers the sentence; resuming speaks that
+  // sentence again from its start.
+  var position = 0; // sentence currently being (or about to be) spoken
+  var spokenAt = 0; // when the current sentence was handed to the engine
+
   function speakFrom(i) {
-    var mine = run;
     if (i >= queue.length) return stop();
+    var mine = ++run;
+    position = i;
+    spokenAt = Date.now();
     highlight(queue[i].el);
 
     var u = new SpeechSynthesisUtterance(speakable(queue[i].text));
@@ -209,36 +219,38 @@
       if (mine === run && state === "playing") speakFrom(i + 1);
     };
     u.onerror = function (e) {
-      if (mine === run && e.error !== "interrupted" && e.error !== "canceled") stop();
+      if (mine !== run || e.error === "interrupted" || e.error === "canceled") return;
+      // Blocked or failed: hold our place so the visitor can try again.
+      halt("paused");
     };
     synth.speak(u);
   }
 
-  function play() {
-    if (state === "paused") {
-      state = "playing";
-      synth.resume();
-    } else {
-      synth.cancel();
-      run++;
-      state = "playing";
-      speakFrom(0);
+  // Cancel speech without losing the place (or clear it, for a full stop).
+  function halt(next) {
+    run++;
+    state = next;
+    synth.cancel();
+    if (next === "idle") {
+      position = 0;
+      highlight(null);
     }
     render();
   }
 
-  function pause() {
-    state = "paused";
-    synth.pause();
+  function play() {
+    synth.cancel();
+    state = "playing";
     render();
+    speakFrom(position);
+  }
+
+  function pause() {
+    halt("paused");
   }
 
   function stop() {
-    run++;
-    state = "idle";
-    synth.cancel();
-    highlight(null);
-    render();
+    halt("idle");
   }
 
   controls.forEach(function (c) {
@@ -248,6 +260,30 @@
     });
     c.stop.addEventListener("click", stop);
   });
+
+  // Phone locked or tab hidden: mobile browsers suspend speech, so pause
+  // cleanly at the current sentence, then carry on from it when the visitor
+  // comes back (unless they paused it themselves). If the browser won't allow
+  // speech without a fresh tap, the error handler leaves it on "Resume".
+  var pausedByHide = false;
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+      if (state === "playing") {
+        pausedByHide = true;
+        pause();
+      }
+    } else if (pausedByHide) {
+      pausedByHide = false;
+      if (state === "paused") play();
+    }
+  });
+
+  // Watchdog: if the engine silently dropped the sentence (seen after
+  // unlocking a phone), say it again.
+  setInterval(function () {
+    if (state !== "playing" || document.hidden) return;
+    if (!synth.speaking && !synth.pending && Date.now() - spokenAt > 2000) speakFrom(position);
+  }, 1500);
 
   // Don't keep talking after the visitor leaves the page.
   window.addEventListener("pagehide", stop);
