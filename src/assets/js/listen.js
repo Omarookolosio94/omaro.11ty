@@ -205,8 +205,20 @@
   var position = 0; // sentence currently being (or about to be) spoken
   var spokenAt = 0; // when the current sentence was handed to the engine
 
+  // Analytics (GoatCounter): e.g. "listen-start/about". No-op if blocked.
+  function track(name) {
+    try {
+      if (!window.goatcounter || !window.goatcounter.count) return;
+      var page = location.pathname.replace(/\/$/, "") || "/home";
+      window.goatcounter.count({ path: name + page, title: name, event: true });
+    } catch (e) {}
+  }
+
   function speakFrom(i) {
-    if (i >= queue.length) return stop();
+    if (i >= queue.length) {
+      track("listen-finish");
+      return stop();
+    }
     var mine = ++run;
     position = i;
     spokenAt = Date.now();
@@ -239,6 +251,7 @@
   }
 
   function play() {
+    if (state === "idle") track("listen-start");
     synth.cancel();
     state = "playing";
     render();

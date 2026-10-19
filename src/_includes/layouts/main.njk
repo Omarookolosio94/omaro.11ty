@@ -75,7 +75,7 @@
           {% for item in navItems %}
             <a href="{{ item.href }}"{% if page.url.startsWith(item.href) %} aria-current="page"{% endif %}>{{ item.text }}</a>
           {% endfor %}
-          <a href="{{ cv.resume }}" target="_blank" rel="noopener noreferrer" class="ext">Résumé</a>
+          <a href="{{ cv.resume }}" target="_blank" rel="noopener noreferrer" class="ext" data-goatcounter-click="resume">Résumé</a>
           <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle colour theme">
             <svg viewBox="0 0 16 16" aria-hidden="true">
               <circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1" />
@@ -111,9 +111,9 @@
         <div class="footer-inner">
           <p>© {% year %} {{ cv.name }}</p>
           <nav aria-label="Elsewhere">
-            <a href="https://www.linkedin.com/in/oghenemaro-okolosio/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="https://github.com/Omarookolosio94" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="mailto:omarookolosio94@gmail.com">Email</a>
+            <a href="https://www.linkedin.com/in/oghenemaro-okolosio/" target="_blank" rel="noopener noreferrer" data-goatcounter-click="contact-linkedin">LinkedIn</a>
+            <a href="https://github.com/Omarookolosio94" target="_blank" rel="noopener noreferrer" data-goatcounter-click="contact-github">GitHub</a>
+            <a href="mailto:omarookolosio94@gmail.com" data-goatcounter-click="contact-email">Email</a>
           </nav>
         </div>
       </div>
@@ -210,5 +210,7 @@
       </div>
       <script src="/assets/js/listen.js?v={{ buildId }}" defer></script>
     {% endif %}
+    <!-- Analytics: cookie-free, ignores localhost. Dashboard: https://omaro.goatcounter.com -->
+    <script data-goatcounter="https://omaro.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
   </body>
 </html>

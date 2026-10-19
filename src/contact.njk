@@ -19,7 +19,7 @@ layout: layouts/main.njk
     {% for item in cv.contact %}
       <li class="row">
         <span class="aside">{{ item.label }}</span>
-        <a href="{{ item.url }}"{% if not item.url.startsWith("mailto:") %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ item.text }}</a>
+        <a href="{{ item.url }}" data-goatcounter-click="contact-{{ item.label | lower }}"{% if not item.url.startsWith("mailto:") %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ item.text }}</a>
       </li>
     {% endfor %}
   </ul>
