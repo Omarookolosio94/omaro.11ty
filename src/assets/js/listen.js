@@ -15,9 +15,9 @@
 
   // Words a speech engine tends to mangle. Order matters (ASP.NET before .NET).
   var SAY = [
-    // Names: "o-geh-ne-ma-row".
-    [/\bOghenemaro\b/g, "Oh-geh-neh-mah-roe"],
-    [/\bMaro\b/g, "Mah-roe"],
+    // Names: "o-ghe-ne-ma-ro".
+    [/\bOghenemaro\b/g, "Oh-gheh-neh-mah-roh"],
+    [/\bMaro\b/g, "Mah-roh"],
     [/\bITab\b/g, "eye-tab"],
     [/\bASP\.NET\b/g, "A S P dot net"],
     [/\.NET\b/g, "dot net"],
